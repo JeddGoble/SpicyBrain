@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationStack {
+                Form {
+                    Section {
+                        Text("Make this app")
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Goals").foregroundColor(.white)
+                            .font(.system(size: 26))
+                    }
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .toolbarBackground(Color(red: 0.18, green: 0.76, blue: 0.71), for: .navigationBar)
+               
+            }
     }
 }
 

@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var goals = Goal.preview()
+    
     var body: some View {
         NavigationStack {
-                Form {
-                    Section {
-                        Text("Make this app")
+            List(goals, id: \.name) { goal in
+                VStack {
+                    Spacer()
+                    HStack{
+                        VStack {
+                            Text(goal.name)
+                                .bold()
+                            Text("0 tasks")
+                            Text("\(goal.streakLength) days")
+                        }
                     }
+                    Spacer()
                 }
+                
+                    }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Text("Goals").foregroundColor(.white)

@@ -13,20 +13,8 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List(goals, id: \.name) { goal in
-                VStack {
-                    Spacer()
-                    HStack{
-                        VStack {
-                            Text(goal.name)
-                                .bold()
-                            Text("0 tasks")
-                            Text("\(goal.streakLength) days")
-                        }
-                    }
-                    Spacer()
-                }
-                
-                    }
+                GoalViewCell(goal: goal)
+            }
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Text("Goals").foregroundColor(.white)
@@ -35,9 +23,40 @@ struct ContentView: View {
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbarBackground(.visible, for: .navigationBar)
-                .toolbarBackground(Color(red: 0.18, green: 0.76, blue: 0.71), for: .navigationBar)
+                .toolbarBackground(Color.sbMint, for: .navigationBar)
                
             }
+    }
+}
+
+struct GoalViewCell: View {
+    
+    var goal: Goal
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack{
+                VStack {
+                    HStack {
+                        Text(goal.name)
+                            .font(.title2)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("0 activities")
+                            .foregroundStyle(Color.sbLightGrey)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("\(goal.streakLength) day streak")
+                            .foregroundStyle(Color.sbMint)
+                        Spacer()
+                    }
+                }
+            }
+            Spacer()
+        }
     }
 }
 

@@ -11,7 +11,7 @@ import SwiftUI
 struct SpicyBrainApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GoalsView()
         }
     }
 }

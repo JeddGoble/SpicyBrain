@@ -16,6 +16,12 @@ struct Goal: Identifiable {
     var streakLength: Int {
         return Int.random(in: 0...14) // TEMP
     }
+    var habitsCompletedToday: Int {
+        return Int.random(in: 1...3) // TEMP
+    }
+    var habitsInGoal: Int {
+        return 3 // TEMP
+    }
     
     static func preview() -> [Goal] {
         return [Goal(name: "Make this app"),

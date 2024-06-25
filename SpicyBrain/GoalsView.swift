@@ -11,9 +11,17 @@ struct GoalsView: View {
     @State private var goals = Goal.preview()
     
     var body: some View {
-        NavigationStack {
-            List(goals, id: \.name) { goal in
-                GoalViewCell(goal: goal)
+        NavigationView {
+            VStack {
+                //Color.purple
+                //.ignoresSafeArea()
+                
+                List(goals, id: \.name) { goal in
+                    GoalViewCell(goal: goal)
+                }
+                
+                AddButtonCell()
+                Spacer()
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -60,7 +68,7 @@ struct GoalViewCell: View {
                 }
                 VStack {
                     Button {
-                        print("TODO: page transition")
+                        print("TODO: Quick settings")
                     } label: {
                         Image("more", bundle: nil)
                             .resizable()
@@ -115,6 +123,39 @@ struct ProgressCircle: View {
     }
 }
 
+struct AddButtonCell: View {
+    
+    var body: some View {
+        HStack {
+            Spacer(minLength: 40.0)
+            Button {
+                // TODO
+            } label: {
+                ZStack {
+                    HStack {
+                        Image("plus", bundle: nil)
+                            .resizable()
+                            .frame(width: 32.0, height: 32.0, alignment: .leading)
+                            .padding()
+                        Spacer()
+                    }
+                    
+                    Text("ADD NEW GOAL")
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 80.0)
+                        .padding(.vertical, 40.0)
+                        .foregroundColor(.white)
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.red)
+            .frame(height: 66.0)
+            .cornerRadius(8.0)
+            Spacer(minLength: 40.0)
+        }
+    }
+}
 
 
 #Preview {

@@ -24,8 +24,8 @@ struct Goal: Identifiable {
     }
     
     static func preview() -> [Goal] {
-        return [Goal(name: "Make this app"),
-                Goal(name: "Get in shape")]
+        return [Goal(name: "Example thing 1"),
+                Goal(name: "Example 2")]
     }
 }
 

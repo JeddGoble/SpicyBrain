@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct Goal: Identifiable {
+struct Goal: Identifiable, Hashable {
+    
+    static func == (lhs: Goal, rhs: Goal) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     let id = UUID()
     
     var name: String

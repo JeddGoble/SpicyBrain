@@ -9,15 +9,18 @@ import SwiftUI
 
 struct GoalsView: View {
     @State private var goals = Goal.preview()
+    @State private var selection: String?
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
-                //Color.purple
-                //.ignoresSafeArea()
                 
                 List(goals, id: \.name) { goal in
-                    GoalViewCell(goal: goal)
+                    NavigationLink {
+                        GoalDetailView(goal: goal)
+                    } label: {
+                        GoalViewCell(goal: goal)
+                    }
                 }
                 
                 AddButtonCell()
@@ -32,7 +35,6 @@ struct GoalsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.sbMint, for: .navigationBar)
-            
         }
     }
 }

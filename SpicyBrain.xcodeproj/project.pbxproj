@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		041176B92C288EA40006DB1A /* GoalHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041176B82C288EA40006DB1A /* GoalHabitsView.swift */; };
+		041176B92C288EA40006DB1A /* GoalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041176B82C288EA40006DB1A /* GoalDetailView.swift */; };
 		0482A3742B6F00B7004254CA /* SpicyBrainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A3732B6F00B7004254CA /* SpicyBrainApp.swift */; };
 		0482A3762B6F00B7004254CA /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A3752B6F00B7004254CA /* GoalsView.swift */; };
 		0482A3782B6F00B8004254CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0482A3772B6F00B8004254CA /* Assets.xcassets */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		041176B82C288EA40006DB1A /* GoalHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalHabitsView.swift; sourceTree = "<group>"; };
+		041176B82C288EA40006DB1A /* GoalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailView.swift; sourceTree = "<group>"; };
 		0482A3702B6F00B7004254CA /* SpicyBrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpicyBrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0482A3732B6F00B7004254CA /* SpicyBrainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpicyBrainApp.swift; sourceTree = "<group>"; };
 		0482A3752B6F00B7004254CA /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 			children = (
 				0482A3732B6F00B7004254CA /* SpicyBrainApp.swift */,
 				0482A3752B6F00B7004254CA /* GoalsView.swift */,
-				041176B82C288EA40006DB1A /* GoalHabitsView.swift */,
+				041176B82C288EA40006DB1A /* GoalDetailView.swift */,
 				0482A3772B6F00B8004254CA /* Assets.xcassets */,
 				0482A3792B6F00B8004254CA /* Preview Content */,
 				0496F9492B7F71DE003ECA44 /* Models.swift */,
@@ -149,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				041176B92C288EA40006DB1A /* GoalHabitsView.swift in Sources */,
+				041176B92C288EA40006DB1A /* GoalDetailView.swift in Sources */,
 				0482A3762B6F00B7004254CA /* GoalsView.swift in Sources */,
 				0482A3742B6F00B7004254CA /* SpicyBrainApp.swift in Sources */,
 				0496F94C2B7F7856003ECA44 /* Date+Extensions.swift in Sources */,

@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct GoalHabitsView: View {
+struct GoalDetailView: View {
+    let goal: Goal
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(goal.name)
     }
 }
 
@@ -50,5 +52,5 @@ struct TimerCircle: View {
 }
 
 #Preview {
-    GoalHabitsView()
+    GoalDetailView(goal: Goal(name: "Example goal"))
 }

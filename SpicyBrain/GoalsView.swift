@@ -10,6 +10,7 @@ import SwiftUI
 struct GoalsView: View {
     @State private var goals = Goal.preview()
     @State private var selection: String?
+    @State var inputText: String = ""
     
     var body: some View {
         NavigationStack {
@@ -24,12 +25,15 @@ struct GoalsView: View {
                 }
                 .scrollContentBackground(.hidden)
                 
-                ProminentButton("ADD NEW GOAL", icon: .plus)
+                //ProminentButton("ADD NEW GOAL", icon: .plus)
+                AssistantInteractionView(text: $inputText)
+                
                 Spacer()
             }
             .background(
                 Image("bg_fun_02_light", bundle: nil)
                     .resizable(resizingMode: .tile)
+                    .ignoresSafeArea()
             )
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -96,7 +100,7 @@ struct GoalCellCircle: View {
         ZStack {
             ProgressCircle(percentageComplete: Double(goal.habitsCompletedToday) / Double(goal.habitsInGoal))
             Text("\(goal.habitsCompletedToday)")
-                //.position(midpoint)
+            //.position(midpoint)
                 .font(.title)
         }
     }
@@ -167,7 +171,7 @@ struct ProminentButton: View {
                         Spacer()
                     case .plus:
                         HStack {
-                            Image("plus", bundle: nil)
+                            Image(Icon.plus.rawValue, bundle: nil)
                                 .resizable()
                                 .frame(width: 32.0, height: 32.0, alignment: .leading)
                                 .padding()
@@ -176,7 +180,7 @@ struct ProminentButton: View {
                     case .chevron:
                         HStack {
                             Spacer()
-                            Image("chevron-right", bundle: nil)
+                            Image(Icon.chevron.rawValue, bundle: nil)
                                 .resizable()
                                 .frame(width: 32.0, height: 32.0, alignment: .leading)
                                 .padding()
@@ -197,6 +201,52 @@ struct ProminentButton: View {
             .cornerRadius(8.0)
             Spacer(minLength: 40.0)
         }
+    }
+}
+
+struct AssistantInteractionView: View {
+    
+    @Binding var text: String
+    @FocusState var isFocused: Bool
+    
+    public struct AssistantTextFieldStyle : TextFieldStyle {
+        public func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration
+                .font(.title2)
+                .padding(14.0)
+                .background(
+                    RoundedRectangle(cornerRadius: 20.0)
+                        .fill(Color.white)
+                        .strokeBorder(Color.sbGrey, lineWidth: 3.0))
+        }
+    }
+    
+    var body: some View {
+        ZStack {
+            HStack {
+                TextField("What's up?", text: $text, axis: .vertical)
+                    .textFieldStyle(AssistantTextFieldStyle())
+                    .textInputAutocapitalization(.never)
+                    .lineLimit(3)
+                    .focused($isFocused)
+                Button {
+                    isFocused = false
+                    // submitted
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20.0)
+                            .frame(width: 60.0, height: 50.0)
+                            .foregroundColor(.sbRed)
+                        Image("chevron-right", bundle: nil)
+                            .resizable()
+                            .frame(width: 30.0, height: 30.0, alignment: .leading)
+                            .padding()
+                    }
+                }
+                
+            }
+        }
+        .padding(.horizontal)
     }
 }
 

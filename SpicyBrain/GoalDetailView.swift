@@ -30,6 +30,7 @@ struct GoalDetailView: View {
             .background(
                 Image("bg_fun_02_light", bundle: nil)
                     .resizable(resizingMode: .tile)
+                    .ignoresSafeArea()
                 )
             .toolbar {
                 ToolbarItem(placement: .principal) {

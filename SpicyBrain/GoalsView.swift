@@ -47,7 +47,7 @@ struct GoalViewCell: View {
         VStack {
             Spacer()
             HStack{
-                ProgressCircle(goal: $goal)
+                GoalCellCircle(goal: $goal)
                 //.frame(width: geo.size.width, height: geo.size.height)
                     .frame(width: 60.0, height: 60.0)
                     .padding(.trailing)
@@ -83,9 +83,22 @@ struct GoalViewCell: View {
     }
 }
 
+struct GoalCellCircle: View {
+    @Binding var goal: Goal
+    
+    var body: some View {
+        ZStack {
+            ProgressCircle(percentageComplete: Double(goal.habitsCompletedToday) / Double(goal.habitsInGoal))
+            Text("\(goal.habitsCompletedToday)")
+                //.position(midpoint)
+                .font(.title)
+        }
+    }
+}
+
 struct ProgressCircle: View {
     
-    @Binding var goal: Goal
+    let percentageComplete: Double
     
     var body: some View {
         GeometryReader { geo in
@@ -97,8 +110,6 @@ struct ProgressCircle: View {
             let strokeSize = minDim * 0.1
             let midpoint = CGPoint(x: minDim / 2.0, y: minDim / 2.0)
             let shadowRad = minDim * 0.02
-            
-            let percentageComplete = Double(goal.habitsCompletedToday) / Double(goal.habitsInGoal)
             
             Path { path in
                 path.addArc(center: midpoint, radius: minDim / 2.0, startAngle: Angle.zero, endAngle: Angle(degrees: 360), clockwise: false)
@@ -118,9 +129,6 @@ struct ProgressCircle: View {
             }
             .stroke(lineWidth: strokeSize)
             .foregroundColor(.sbLightGrey)
-            Text("\(goal.habitsCompletedToday)")
-                .position(midpoint)
-                .font(.title)
         }
     }
 }

@@ -11,46 +11,95 @@ struct GoalDetailView: View {
     let goal: Goal
     
     var body: some View {
-        Text(goal.name)
-    }
-}
-
-struct TimerCircle: View {
-    var percentageComplete: Double
-    
-    var body: some View {
-        GeometryReader { geo in
-            let width = geo.size.width
-            let height = geo.size.height
-            let minDim = width < height ? width : height
-            
-            let inset = minDim * 0.1
-            let strokeSize = minDim * 0.1
-            let midpoint = CGPoint(x: minDim / 2.0, y: minDim / 2.0)
-            let shadowRad = minDim * 0.02
-            
-            Path { path in
-                path.addArc(center: midpoint, radius: minDim / 2.0, startAngle: Angle.zero, endAngle: Angle(degrees: 360), clockwise: false)
+        NavigationStack {
+            VStack {
+                
+                if let activities = goal.activities {
+                    List(activities, id: \.name) { activity in
+                        NavigationLink {
+                            FocusSessionView(activity: activity)
+                        } label: {
+                            ActivityViewCell(activity: activity)
+                        }
+                    }
+                }
+                // AddButtonCell()
+                Spacer()
             }
-            .fill()
-            .foregroundColor(.white)
-            .shadow(color: .sbLightGrey, radius: shadowRad, x: shadowRad / 2.0, y: shadowRad / 2.0)
-             
-            Path { path in
-                path.addArc(center: midpoint, radius: minDim / 2.0 - inset, startAngle: Angle(degrees: -90), endAngle: Angle(degrees: percentageComplete * 360 - 90), clockwise: false)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(goal.name).foregroundColor(.white)
+                        .font(.system(size: 26))
+                }
             }
-            .stroke(lineWidth: strokeSize)
-            .foregroundColor(.sbMint)
-            
-            Path { path in
-                path.addArc(center: midpoint, radius: minDim / 2.0 - inset, startAngle: Angle(degrees: percentageComplete * 360 - 90), endAngle: Angle(degrees: -90), clockwise: false)
-            }
-            .stroke(lineWidth: strokeSize)
-            .foregroundColor(.sbLightGrey)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(Color.sbMint, for: .navigationBar)
         }
     }
 }
 
+struct SummaryCell: View {
+    
+    @State var goal: Goal
+    
+    var body: some View {
+        Spacer()
+    }
+}
+
+struct ActivityViewCell: View {
+    
+    @State var activity: Activity
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack{
+                ActivityCellCircle(activity: $activity)
+                    .frame(width: 40.0, height: 40.0)
+                    .padding(.trailing)
+                VStack {
+                    HStack {
+                        Text(activity.name)
+                            .font(.title2)
+                        Spacer()
+                    }
+                    HStack {
+                        Text(activity.summary)
+                            .foregroundStyle(Color.sbMint)
+                        Spacer()
+                    }
+                }
+                VStack {
+                    Button {
+                        print("TODO: Quick settings")
+                    } label: {
+                        Image("more", bundle: nil)
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: .center)
+                    }
+                }
+            }
+            Spacer()
+        }
+    }
+}
+
+struct ActivityCellCircle: View {
+    @Binding var activity: Activity
+    
+    var body: some View {
+        if let timeToday = activity.timeToday, let dailyTimeGoal = activity.dailyTimeGoal {
+            ProgressCircle(percentageComplete: timeToday / dailyTimeGoal)
+        } else {
+            ProgressCircle(percentageComplete: 0.0)
+        }
+    }
+}
+
+
+
 #Preview {
-    GoalDetailView(goal: Goal(name: "Example goal"))
+    GoalDetailView(goal: Goal.preview().first != nil ? Goal.preview().first! : Goal(name: "Test"))
 }

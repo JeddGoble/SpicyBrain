@@ -22,10 +22,15 @@ struct GoalDetailView: View {
                             ActivityViewCell(activity: activity)
                         }
                     }
+                    .scrollContentBackground(.hidden)
                 }
                 // AddButtonCell()
                 Spacer()
             }
+            .background(
+                Image("bg_fun_02_light", bundle: nil)
+                    .resizable(resizingMode: .tile)
+                )
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(goal.name).foregroundColor(.white)

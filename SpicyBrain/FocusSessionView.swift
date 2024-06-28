@@ -11,7 +11,32 @@ struct FocusSessionView: View {
     let activity: Activity
     
     var body: some View {
-        Text(activity.name)
+        
+        NavigationStack {
+            
+            VStack {
+                Spacer(minLength: 60.0)
+                HStack {
+                    Spacer(minLength: 60.0)
+                    TimerCircle(percentageComplete: 0.5)
+                    Spacer(minLength: 60.0)
+                }
+                Spacer()
+            }
+            .background(
+                Image("bg_fun_01_light", bundle: nil)
+                    .resizable(resizingMode: .tile)
+                )
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(activity.name).foregroundColor(.white)
+                        .font(.system(size: 26))
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(Color.sbMint, for: .navigationBar)
+        }
     }
 }
 
@@ -35,7 +60,7 @@ struct TimerCircle: View {
             .fill()
             .foregroundColor(.white)
             .shadow(color: .sbLightGrey, radius: shadowRad, x: shadowRad / 2.0, y: shadowRad / 2.0)
-             
+            
             Path { path in
                 path.addArc(center: midpoint, radius: minDim / 2.0 - inset, startAngle: Angle(degrees: -90), endAngle: Angle(degrees: percentageComplete * 360 - 90), clockwise: false)
             }

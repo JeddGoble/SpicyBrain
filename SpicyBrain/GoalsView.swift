@@ -22,10 +22,15 @@ struct GoalsView: View {
                         GoalViewCell(goal: goal)
                     }
                 }
+                .scrollContentBackground(.hidden)
                 
                 AddButtonCell()
                 Spacer()
             }
+            .background(
+                Image("bg_fun_02_light", bundle: nil)
+                    .resizable(resizingMode: .tile)
+            )
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Goals").foregroundColor(.white)
@@ -36,6 +41,7 @@ struct GoalsView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.sbMint, for: .navigationBar)
         }
+        
     }
 }
 

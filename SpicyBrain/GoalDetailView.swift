@@ -24,7 +24,7 @@ struct GoalDetailView: View {
                     }
                     .scrollContentBackground(.hidden)
                 }
-                // AddButtonCell()
+                ProminentButton("ADD ACTIVITY", icon: .plus)
                 Spacer()
             }
             .background(

@@ -12,5 +12,5 @@ extension Color {
     static let sbMint = Color(red: 0.18, green: 0.76, blue: 0.71)
     static let sbGrey = Color(red: 0.6, green: 0.6, blue: 0.6)
     static let sbLightGrey = Color(red: 0.9, green: 0.92, blue: 0.93)
-    static let sbRed = Color(red: 1.0, green: 0.93, blue: 0.27)
+    static let sbRed = Color(red: 1.0, green: 0.2, blue: 0.27)
 }

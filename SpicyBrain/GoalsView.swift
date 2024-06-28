@@ -24,7 +24,7 @@ struct GoalsView: View {
                 }
                 .scrollContentBackground(.hidden)
                 
-                AddButtonCell()
+                ProminentButton("ADD NEW GOAL", icon: .plus)
                 Spacer()
             }
             .background(
@@ -139,7 +139,21 @@ struct ProgressCircle: View {
     }
 }
 
-struct AddButtonCell: View {
+struct ProminentButton: View {
+    
+    init(_ buttonText: String, icon: Icon = .none) {
+        self.buttonText = buttonText
+        self.icon = icon
+    }
+    
+    let buttonText: String
+    let icon: Icon
+    
+    enum Icon: String {
+        case none
+        case plus = "plus"
+        case chevron = "chevron-right"
+    }
     
     var body: some View {
         HStack {
@@ -148,15 +162,28 @@ struct AddButtonCell: View {
                 // TODO
             } label: {
                 ZStack {
-                    HStack {
-                        Image("plus", bundle: nil)
-                            .resizable()
-                            .frame(width: 32.0, height: 32.0, alignment: .leading)
-                            .padding()
+                    switch icon {
+                    case .none:
                         Spacer()
+                    case .plus:
+                        HStack {
+                            Image("plus", bundle: nil)
+                                .resizable()
+                                .frame(width: 32.0, height: 32.0, alignment: .leading)
+                                .padding()
+                            Spacer()
+                        }
+                    case .chevron:
+                        HStack {
+                            Spacer()
+                            Image("chevron-right", bundle: nil)
+                                .resizable()
+                                .frame(width: 32.0, height: 32.0, alignment: .leading)
+                                .padding()
+                        }
                     }
                     
-                    Text("ADD NEW GOAL")
+                    Text(buttonText)
                         .font(.subheadline)
                         .fontWeight(.bold)
                         .padding(.horizontal, 80.0)
@@ -165,7 +192,7 @@ struct AddButtonCell: View {
                 }
             }
             .buttonStyle(.borderedProminent)
-            .tint(.red)
+            .tint(.sbRed)
             .frame(height: 66.0)
             .cornerRadius(8.0)
             Spacer(minLength: 40.0)
